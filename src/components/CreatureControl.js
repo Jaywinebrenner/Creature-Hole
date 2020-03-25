@@ -19,18 +19,21 @@ class CreatureControl extends React.Component {
       formVisibleOnPage: false,
       masterCreatureList: [
         {
+          id: 1,
           name: "Goblin Bro",
           hitPoints: "5",
           armorClass: '8',
           desc: "Gnarly little Goblin Bro who licks deodorant and door knobs."
         },
         {
-        name: "Banshee Person",
+        id: 2,
+        name: "Sneezoid",
         hitPoints: "35",
         armorClass: '8',
-        desc: "A gal that crusies around and sneezes 0n railings."
+        desc: "A little booger dude that crusies around and sneezes on surfaces."
         },
         {
+        id: 3,
         name: "Draculette",
         hitPoints: "85",
         armorClass: '-2',
@@ -38,6 +41,7 @@ class CreatureControl extends React.Component {
         },
 
         {
+        id: 4,
         name: "Orc Dude",
         hitPoints: "5",
         armorClass: '9',
