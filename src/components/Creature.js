@@ -13,6 +13,10 @@ const useStyles = makeStyles({
     maxWidth: 400,
     marginTop: 20,
     marginLeft: 20,
+    display: 'inline-block',
+    width: '300px',
+    height: '300px',
+    textAlign: 'center'
   },
   bullet: {
     display: 'inline-block',

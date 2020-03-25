@@ -20,6 +20,7 @@ const NewCreatureForm = (props) => {
       maxWidth: 400,
       marginTop: 20,
       marginLeft: 20,
+      textAlign: 'center'
     },
     bullet: {
       display: 'inline-block',
@@ -57,7 +58,7 @@ props.onNewCreatureCreation({
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-
+    
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <form onSubmit={handleNewCreatureFormSubmission}>

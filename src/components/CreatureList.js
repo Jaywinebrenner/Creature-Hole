@@ -23,13 +23,17 @@ desc: "A vampire girl that licks necks and doesn't brush her teeth."
 },
 
 ];
+
+
+
+
 const CreatureList = (props) => {
 
-console.log(props);
   const styles = {
     appWrapper: {
       textAlign: 'center',
       backgroundColor: 'white',
+      
     }
   }
 
