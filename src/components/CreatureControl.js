@@ -22,41 +22,36 @@ class CreatureControl extends React.Component {
         {
           id: 1,
           name: "Goblin Bro",
-          hitPoints: "5",
-          armorClass: '8',
+          hitPoints: 5,
+          armorClass: 8,
           desc: "Gnarly little Goblin Bro who licks deodorant and door knobs."
         },
         {
         id: 2,
         name: "Sneezoid",
-        hitPoints: "35",
-        armorClass: '8',
+        hitPoints: 35,
+        armorClass: 5,
         desc: "A little booger dude that crusies around and sneezes on surfaces."
         },
         {
         id: 3,
         name: "Draculette",
-        hitPoints: "85",
-        armorClass: '-2',
+        hitPoints: 87,
+        armorClass: -2,
         desc: "A vampire girl that licks necks, bathes in germs and doesn't brush her teeth."
         },
 
         {
         id: 4,
         name: "Orc Dude",
-        hitPoints: "5",
-        armorClass: '9',
+        hitPoints: 5,
+        armorClass: 9,
         desc: "A pig dude that licks door bells and doesn't social distance."
         },
         ]
     };
   }
 
-  handleDeletingCreature = (id) => {
-    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
-    this.setState({masterCreatureList: newMasterCreatureList});
-    this.setState({selectedCreature: null});
-  }
 
   handleToggleEditView = (id) => {
     const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
@@ -65,17 +60,28 @@ class CreatureControl extends React.Component {
     }));
   }
 
-  handleEditingCreature = (id) => {
-    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
-    this.setState({masterCreatureList: newMasterCreatureList});
-    this.setState({selectedCreature: null});
-  }
 
   handleClick = () => {
       this.setState(prevState => ({
         formVisibleOnPage: !prevState.formVisibleOnPage
       }));
     }
+
+    handleDeletingCreature = (id) => {
+      const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
+      this.setState({masterCreatureList: newMasterCreatureList});
+      this.setState({selectedCreature: null});
+    }
+
+    // Need to figure out how to update... delete and make new creature at the same time???
+  handleEditingCreature = (id) => {
+    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
+    this.setState({masterCreatureList: newMasterCreatureList});
+    const newNewMasterCreatureList = this.state.masterCreatureList.concat(id);
+    this.setState({masterCreatureList: newNewMasterCreatureList});
+    this.setState({formVisibleOnPage: false});
+  }
+
 
   handleAddingNewCreatureToList = (newCreature) => {
     const newMasterCreatureList = this.state.masterCreatureList.concat(newCreature);
@@ -95,7 +101,10 @@ class CreatureControl extends React.Component {
 
 
         if (this.state.editFormVisible) {
-          currentlyVisibleEditState = <CreatureEdit />;
+          currentlyVisibleEditState = <CreatureEdit
+            onEditingCreature={this.handleEditingCreature}
+            creatureList = {this.state.masterCreatureList}
+            />;
         }
 
         if (this.state.formVisibleOnPage) {
@@ -110,6 +119,7 @@ class CreatureControl extends React.Component {
             onCreatureSelection={this.handleChangingSelectedCreature}
             onClickingDelete = {this.handleDeletingCreature}
             onClickingEdit= {this.handleToggleEditView}
+
 
             />;
           buttonText = "Add Creature";
