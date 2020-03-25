@@ -80,6 +80,7 @@ const Creature = (props) => {
       </CardContent>
 
       <CardActions
+        onClick={()=> props.onClickingEdit(props.id)}
         className={classes.edit}>
         <Edit />
       </CardActions>
@@ -100,8 +101,8 @@ Creature.propTypes = {
   armorClass: PropTypes.number,
   desc: PropTypes.string,
   id: PropTypes.number,
-  onClickingDelete: PropTypes.func
-
+  onClickingDelete: PropTypes.func,
+  onClickingEdit: PropTypes.func
 }
 
 

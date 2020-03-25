@@ -2,7 +2,7 @@ import React from 'react';
 import NewCreatureForm from './NewCreatureForm';
 import CreatureList from './CreatureList';
 import Button from '@material-ui/core/Button';
-
+import CreatureEdit from './CreatureEdit';
 
 const styles = {
   textAlign: 'center',
@@ -16,6 +16,7 @@ class CreatureControl extends React.Component {
     super(props);
     this.state = {
       selectedCreature: null,
+      editFormVisible: false,
       formVisibleOnPage: false,
       masterCreatureList: [
         {
@@ -52,7 +53,20 @@ class CreatureControl extends React.Component {
   }
 
   handleDeletingCreature = (id) => {
-    const newMasterCreatureList = this.state.masterCreatureList.filter(ticket => ticket.id !== id);
+    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
+    this.setState({masterCreatureList: newMasterCreatureList});
+    this.setState({selectedCreature: null});
+  }
+
+  handleToggleEditView = (id) => {
+    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
+    this.setState(prevState => ({
+      editFormVisible: !prevState.editFormVisible
+    }));
+  }
+
+  handleEditingCreature = (id) => {
+    const newMasterCreatureList = this.state.masterCreatureList.filter(creature => creature.id !== id);
     this.setState({masterCreatureList: newMasterCreatureList});
     this.setState({selectedCreature: null});
   }
@@ -70,14 +84,19 @@ class CreatureControl extends React.Component {
   }
 
   handleChangingSelectedCreature = (id) => {
-    const selectedCreature = this.state.masterCreatureList.filter(ticket => ticket.id === id)[0];
+    const selectedCreature = this.state.masterCreatureList.filter(creature => creature.id === id)[0];
     this.setState({selectedCreature: selectedCreature});
   }
 
     render(){
-
+        let currentlyVisibleEditState = null;
         let currentlyVisibleState = null;
         let buttonText = null;
+
+
+        if (this.state.editFormVisible) {
+          currentlyVisibleEditState = <CreatureEdit />;
+        }
 
         if (this.state.formVisibleOnPage) {
           currentlyVisibleState = <NewCreatureForm
@@ -90,24 +109,27 @@ class CreatureControl extends React.Component {
             creatureList = {this.state.masterCreatureList}
             onCreatureSelection={this.handleChangingSelectedCreature}
             onClickingDelete = {this.handleDeletingCreature}
+            onClickingEdit= {this.handleToggleEditView}
+
             />;
           buttonText = "Add Creature";
         }
         return (
           <React.Fragment>
-          <div
-          className='buttonDiv'
-          style={styles}
-          >
-            <Button
-            onClick={this.handleClick}
-            variant="contained"
-            color="primary"
+            <div
+            className='buttonDiv'
+            style={styles}
             >
-            {buttonText}
-            </Button> { /* new code */ }
+              <Button
+              onClick={this.handleClick}
+              variant="contained"
+              color="primary"
+              >
+              {buttonText}
+              </Button> { /* new code */ }
             </div>
             {currentlyVisibleState}
+            {currentlyVisibleEditState}
           </React.Fragment>
         );
       }

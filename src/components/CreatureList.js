@@ -23,6 +23,7 @@ const CreatureList = (props) => {
       <Creature
       onCreatureSelection = {props.onCreatureSelection}
       onClickingDelete = {props.onClickingDelete}
+      onClickingEdit = {props.onClickingEdit}
       name={creature.name}
       hitPoints={creature.hitPoints}
       armorClass={creature.armorClass}
@@ -40,6 +41,7 @@ const CreatureList = (props) => {
 CreatureList.propTypes = {
   creatureList: PropTypes.array,
   onClickingDelete: PropTypes.func,
+  onClickingEdit: PropTypes.func,
   onCreatureSelection: PropTypes.func
 };
 
