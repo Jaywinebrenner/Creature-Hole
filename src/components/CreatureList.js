@@ -13,12 +13,11 @@ const CreatureList = (props) => {
     appWrapper: {
       textAlign: 'center',
       backgroundColor: 'white',
-
     }
   }
 
   return (
-    <React.Fragment style={styles.appWrapper}>
+    <div style={styles.appWrapper}>
 
       {props.creatureList.map((creature, index) =>
       <Creature
@@ -30,7 +29,7 @@ const CreatureList = (props) => {
       />
     )}
 
-    </React.Fragment>
+  </div>
 
   )
 }

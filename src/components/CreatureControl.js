@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 
 const styles = {
   textAlign: 'center',
-  paddingTop: '20px'
+  paddingTop: '20px',
+
 }
 
 class CreatureControl extends React.Component {
