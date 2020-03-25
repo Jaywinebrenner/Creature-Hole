@@ -21,11 +21,14 @@ const CreatureList = (props) => {
 
       {props.creatureList.map((creature, index) =>
       <Creature
+      onCreatureSelection = {props.onCreatureSelection}
+      onClickingDelete = {props.onClickingDelete}
       name={creature.name}
       hitPoints={creature.hitPoints}
       armorClass={creature.armorClass}
       desc={creature.desc}
-      key={index}
+      id={creature.id}
+      key={creature.id}
       />
     )}
 
@@ -35,7 +38,9 @@ const CreatureList = (props) => {
 }
 
 CreatureList.propTypes = {
-  creatureList: PropTypes.array
+  creatureList: PropTypes.array,
+  onClickingDelete: PropTypes.func,
+  onCreatureSelection: PropTypes.func
 };
 
 export default CreatureList

@@ -15,6 +15,7 @@ class CreatureControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedCreature: null,
       formVisibleOnPage: false,
       masterCreatureList: [
         {
@@ -46,6 +47,11 @@ class CreatureControl extends React.Component {
     };
   }
 
+  handleDeletingCreature = (id) => {
+    const newMasterCreatureList = this.state.masterCreatureList.filter(ticket => ticket.id !== id);
+    this.setState({masterCreatureList: newMasterCreatureList});
+    this.setState({selectedCreature: null});
+  }
 
   handleClick = () => {
       this.setState(prevState => ({
@@ -59,6 +65,10 @@ class CreatureControl extends React.Component {
     this.setState({formVisibleOnPage: false});
   }
 
+  handleChangingSelectedCreature = (id) => {
+    const selectedCreature = this.state.masterCreatureList.filter(ticket => ticket.id === id)[0];
+    this.setState({selectedCreature: selectedCreature});
+  }
 
     render(){
 
@@ -72,7 +82,11 @@ class CreatureControl extends React.Component {
             />;
           buttonText = "Return to Creature List";
         } else {
-          currentlyVisibleState = <CreatureList creatureList={this.state.masterCreatureList} />;
+          currentlyVisibleState = <CreatureList
+            creatureList = {this.state.masterCreatureList}
+            onCreatureSelection={this.handleChangingSelectedCreature}
+            onClickingDelete = {this.handleDeletingCreature}
+            />;
           buttonText = "Add Creature";
         }
         return (

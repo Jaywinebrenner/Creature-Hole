@@ -85,6 +85,7 @@ const Creature = (props) => {
       </CardActions>
 
       <CardActions
+        onClick={()=> props.onClickingDelete(props.id)}
         className={classes.clear}>
         <Clear />
       </CardActions>
@@ -97,8 +98,9 @@ Creature.propTypes = {
   name: PropTypes.string,
   hitPoints: PropTypes.number,
   armorClass: PropTypes.number,
-  desc: PropTypes.string
-
+  desc: PropTypes.string,
+  id: PropTypes.number,
+  onClickingDelete: PropTypes.func
 
 }
 
