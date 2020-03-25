@@ -47,8 +47,9 @@ props.onNewCreatureCreation({
     hitPoints: event.target.hitPoints.value,
       armorClass: event.target.armorClass.value,
         desc: event.target.desc.value,
-})
-  }
+        id: v4()
+  })
+}
   console.log(handleNewCreatureFormSubmission);
 
 
@@ -58,7 +59,7 @@ props.onNewCreatureCreation({
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    
+
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <form onSubmit={handleNewCreatureFormSubmission}>
@@ -110,6 +111,8 @@ props.onNewCreatureCreation({
   );
 }
 
-
+NewCreatureForm.propTypes = {
+  onNewCreatureCreation: PropTypes.func
+};
 
 export default NewCreatureForm;

@@ -15,7 +15,33 @@ class CreatureControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      number: 0
+      masterCreatureList: [
+        {
+          name: "Goblin Bro",
+          hitPoints: "5",
+          armorClass: '8',
+          desc: "Gnarly little Goblin Bro who licks deodorant and door knobs."
+        },
+        {
+        name: "Banshee Person",
+        hitPoints: "35",
+        armorClass: '8',
+        desc: "A gal that crusies around and sneezes 0n railings."
+        },
+        {
+        name: "Draculette",
+        hitPoints: "85",
+        armorClass: '-2',
+        desc: "A vampire girl that licks necks and doesn't brush her teeth."
+        },
+
+        {
+        name: "Orc Dude",
+        hitPoints: "5",
+        armorClass: '9',
+        desc: "A pig dude that licks door bells and doesn't social distance."
+        },
+        ]
     };
   }
 
@@ -26,17 +52,26 @@ class CreatureControl extends React.Component {
       }));
     }
 
+  handleAddingNewCreatureToList = (newCreature) => {
+    const newMasterCreatureList = this.state.masterCreatureList.concat(newCreature);
+    this.setState({masterCreatureList: newMasterCreatureList});
+    this.setState({formVisibleOnPage: false});
+  }
 
 
     render(){
 
         let currentlyVisibleState = null;
         let buttonText = null;
+
         if (this.state.formVisibleOnPage) {
-          currentlyVisibleState = <NewCreatureForm />;
+          currentlyVisibleState = <NewCreatureForm
+          onNewCreatureCreation={this.handleAddingNewCreatureToList}
+
+            />;
           buttonText = "Return to Creature List";
         } else {
-          currentlyVisibleState = <CreatureList />;
+          currentlyVisibleState = <CreatureList creatureList={this.state.masterCreatureList} />;
           buttonText = "Add Creature";
         }
         return (
