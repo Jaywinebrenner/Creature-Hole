@@ -20,7 +20,8 @@ const NewCreatureForm = (props) => {
       maxWidth: 400,
       marginTop: 20,
       marginLeft: 20,
-      textAlign: 'center'
+      textAlign: 'center',
+      display: 'inline-block'
     },
     bullet: {
       display: 'inline-block',
@@ -37,6 +38,13 @@ const NewCreatureForm = (props) => {
     powersText: {
       fontSize: 12,
       marginTop: 5
+    },
+    cardWrapper: {
+      textAlign: 'center',
+    },
+    createCreatureButton: {
+      marginTop: '10px',
+      padding: '500px'
     }
   });
 
@@ -59,7 +67,7 @@ props.onNewCreatureCreation({
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-
+   <div className={classes.cardWrapper}>
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <form onSubmit={handleNewCreatureFormSubmission}>
@@ -89,12 +97,14 @@ props.onNewCreatureCreation({
 
             <Typography variant="h5" component="h2">
             <TextField
+              multiline
               type='text'
               name='desc'
               placeholder='Description' />
           </Typography>
 
           <Button
+            className='createCreatureButton'
             variant="contained"
             color="primary"
             type='submit'
@@ -108,6 +118,7 @@ props.onNewCreatureCreation({
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
+  </div>
   );
 }
 

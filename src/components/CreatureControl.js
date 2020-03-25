@@ -37,7 +37,7 @@ class CreatureControl extends React.Component {
         name: "Draculette",
         hitPoints: "85",
         armorClass: '-2',
-        desc: "A vampire girl that licks necks and doesn't brush her teeth."
+        desc: "A vampire girl that licks necks, bathes in germs and doesn't brush her teeth."
         },
 
         {
